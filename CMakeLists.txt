@@ -30,7 +30,6 @@ target_sources(${CMAKE_PROJECT_NAME}
     MAVLinkLib.h
 
     linkmanager.h linkmanager.cpp
-
     SerialLink.h SerialLink.cc
     UDPLink.h UDPLink.cc
     UdpIODevice.cc UdpIODevice.h
