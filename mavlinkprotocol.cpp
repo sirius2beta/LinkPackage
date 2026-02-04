@@ -1,5 +1,6 @@
 #include "mavlinkprotocol.h"
 #include "linkmanager.h"
+#include "bridge.h"
 
 #include<QtCore/QApplicationStatic>
 #include<QSettings>
@@ -51,6 +52,8 @@ void MAVLinkProtocol::receiveBytes(LinkInterface *link, const QByteArray &data)
         }else{
             _forwardtoPixhawk(message);
         }
+
+        emit messageReceived(link, message);
         continue;
     }
 }
@@ -75,16 +78,11 @@ void MAVLinkProtocol::_forward(const mavlink_message_t &message)
     uint8_t buf[MAVLINK_MAX_PACKET_LEN]{};
     const uint16_t len = mavlink_msg_to_send_buffer(buf, &message);
 
-    SharedLinkInterfacePtr primaryUDPLink = LinkManager::instance()->mavlinkPrimaryUDPLink();
-    if (primaryUDPLink) {
-        (void) primaryUDPLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buf), len);
-    }
-    SharedLinkInterfacePtr secondaryUDPLink = LinkManager::instance()->mavlinkSecondaryUDPLink();
-    if (secondaryUDPLink) {
-        (void) secondaryUDPLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buf), len);
-    }
+    SharedLinkInterfacePtr primaryLink = Bridge::instance()->primaryLink().lock();
 
-
+    if(primaryLink){
+        (void) primaryLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buf), len);
+    }
 
 }
 

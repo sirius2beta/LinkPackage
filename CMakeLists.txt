@@ -15,8 +15,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core SerialPort Network)
 add_executable(${CMAKE_PROJECT_NAME}
   main.cpp
   LinkPackage.qrc
-
-  HEX.qrc
   bridge.h bridge.cpp
 )
 

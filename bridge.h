@@ -17,28 +17,35 @@ public:
     explicit Bridge(QObject *parent = nullptr);
 
     static Bridge *instance();
+
+    void init();
+    void addUdpLinks(LinkInterface* primaryUdpLink, LinkInterface* secondaryUdpLink);
+    void addPixhawkSerialLink(LinkInterface* pixhawkSerialLink);
+
+    WeakLinkInterfacePtr primaryLink() const { return _primaryLink; }
 signals:
 
 
 protected slots:
     void mavlinkMessageReceived(LinkInterface *link, const mavlink_message_t &message);
-    void init();
-    void setupLinks(LinkInterface* primaryUdpLink, LinkInterface* secondaryUdpLink, LinkInterface* pixhawkSerialLink);
+
 
 
 
 
 private slots:
     void _commLostCheck();
+    void _sendGCSHeartbeat();
 
 private:
+    static constexpr int _heartbeatTimeoutMSecs = 1000; ///< Check for comm lost once a second
     static constexpr int _commLostCheckTimeoutMSecs = 1000; ///< Check for comm lost once a second
     static constexpr int _heartbeatMaxElpasedMSecs = 3500;  ///< No heartbeat for longer than this indicates comm loss
 
-    void _addLink(LinkInterface *link);
     bool _updatePrimaryLink();
-    SharedLinkInterfacePtr _bestActivePrimaryLink();
 
+    QTimer *_commLostCheckTimer = nullptr;
+    QTimer *_bridgeHearbeatTimer = nullptr;
     WeakLinkInterfacePtr _primaryLink;
 
     LinkInterface* _primaryUdpLink;

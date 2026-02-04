@@ -13,8 +13,20 @@ Bridge::Bridge(QObject *parent)
     : QObject{parent},
     _primaryUdpLink(nullptr),
     _secondaryUdpLink(nullptr),
-    _pixhawkSerialLink(nullptr)
-{}
+    _pixhawkSerialLink(nullptr),
+    _commLostCheckTimer(new QTimer(this)),
+    _bridgeHearbeatTimer(new QTimer(this))
+{
+    connect(MAVLinkProtocol::instance(), &MAVLinkProtocol::messageReceived, this, &Bridge::mavlinkMessageReceived);
+    (void) connect(_commLostCheckTimer, &QTimer::timeout, this, &Bridge::_commLostCheck);
+    (void) connect(_bridgeHearbeatTimer, &QTimer::timeout, this, &Bridge::_sendGCSHeartbeat);
+
+    _commLostCheckTimer->setSingleShot(false);
+    _commLostCheckTimer->setInterval(_commLostCheckTimeoutMSecs);
+
+    _bridgeHearbeatTimer->setSingleShot(false);
+    _bridgeHearbeatTimer->setInterval(_heartbeatTimeoutMSecs);
+}
 
 Bridge* Bridge::instance()
 {
@@ -24,26 +36,31 @@ Bridge* Bridge::instance()
 void Bridge::init()
 {
 
-    connect(MAVLinkProtocol::instance(), &MAVLinkProtocol::messageReceived, this, &Bridge::mavlinkMessageReceived);
 }
 
-void Bridge::setupLinks(LinkInterface* primaryUdpLink, LinkInterface* secondaryUdpLink, LinkInterface* pixhawkSerialLink)
+void Bridge::addUdpLinks(LinkInterface* primaryUdpLink, LinkInterface* secondaryUdpLink)
 {
 
-    SharedLinkInterfacePtr sharedLink = LinkManager::instance()->sharedLinkInterfacePointerForLink(primaryUdpLink);
-    if (!sharedLink) {
-        qCDebug(BridgeLog) << "_addLink stale link" << (void*)primaryUdpLink;
-        return;
-    }
     _primaryUdpLink = primaryUdpLink;
-    _primaryUdpLinkInfo.link = sharedLink;
+    _primaryUdpLinkInfo.link = LinkManager::instance()->sharedLinkInterfacePointerForLink(primaryUdpLink);
     _primaryUdpLinkInfo.heartbeatElapsedTimer.start();
+
     _secondaryUdpLink = secondaryUdpLink;
+    _secondaryUdpLinkInfo.link = LinkManager::instance()->sharedLinkInterfacePointerForLink(secondaryUdpLink);
+    _secondaryUdpLinkInfo.heartbeatElapsedTimer.start();
+    _commLostCheckTimer->start();
+    _bridgeHearbeatTimer->start();
+}
+
+void Bridge::addPixhawkSerialLink(LinkInterface* pixhawkSerialLink)
+{
     _pixhawkSerialLink = pixhawkSerialLink;
 }
 
 void Bridge::mavlinkMessageReceived(LinkInterface *link, const mavlink_message_t &message)
 {
+    uint8_t buf[MAVLINK_MAX_PACKET_LEN]{};
+    const uint16_t len = mavlink_msg_to_send_buffer(buf, &message);
     // Radio status messages come from Sik Radios directly. It doesn't indicate there is any life on the other end.
     if (message.msgid == MAVLINK_MSG_ID_RADIO_STATUS) {
         return;
@@ -55,6 +72,7 @@ void Bridge::mavlinkMessageReceived(LinkInterface *link, const mavlink_message_t
             _primaryUdpLinkInfo.commLost = false;
             _updatePrimaryLink();
         }
+
     }else if(link == _secondaryUdpLink){
         _secondaryUdpLinkInfo.heartbeatElapsedTimer.restart();
         if(_secondaryUdpLinkInfo.commLost){
@@ -64,31 +82,11 @@ void Bridge::mavlinkMessageReceived(LinkInterface *link, const mavlink_message_t
     }
 }
 
-void Bridge::_addLink(LinkInterface *link)
-{
-
-}
-
-SharedLinkInterfacePtr Bridge::_bestActivePrimaryLink()
-{
-
-    if(!_primaryUdpLinkInfo.commLost){
-        return _primaryUdpLinkInfo.link;
-    }else if(!_secondaryUdpLinkInfo.commLost){
-        return _secondaryUdpLinkInfo.link;
-    }
-
-
-
-    // Last possible choice is a high latency link
-
-
-    return {};
-}
 
 bool Bridge::_updatePrimaryLink()
 {
     SharedLinkInterfacePtr primaryLink = _primaryLink.lock();
+
 
     if(primaryLink.get() == _primaryUdpLink){
         if(!_primaryUdpLinkInfo.commLost){
@@ -96,6 +94,7 @@ bool Bridge::_updatePrimaryLink()
         }else{
             if(!_secondaryUdpLinkInfo.commLost){
                 _primaryLink = _secondaryUdpLinkInfo.link;
+                qCDebug(BridgeLog,"secondary link up");
                 return true;
             }else{
                 return false;
@@ -106,6 +105,7 @@ bool Bridge::_updatePrimaryLink()
         if(!_secondaryUdpLinkInfo.commLost){
             if(!_primaryUdpLinkInfo.commLost){
                 _primaryLink = _primaryUdpLinkInfo.link;
+                qCDebug(BridgeLog,"primary link up");
                 return true;
             }else{
                 return false;
@@ -113,10 +113,12 @@ bool Bridge::_updatePrimaryLink()
         }else{
             if(!_primaryUdpLinkInfo.commLost){
                 _primaryLink = _primaryUdpLinkInfo.link;
+                qCDebug(BridgeLog,"primary link up");
                 return true;
             }else{
                 //need backup
                 _primaryLink = _primaryUdpLinkInfo.link;
+                qCDebug(BridgeLog,"primary link up");
                 return true;
 
             }
@@ -129,7 +131,6 @@ void Bridge::_commLostCheck()
 {
 
     const int heartbeatTimeout = _heartbeatMaxElpasedMSecs;
-
     bool linkStatusChange = false;
 
     if (!_primaryUdpLinkInfo.commLost &&  (_primaryUdpLinkInfo.heartbeatElapsedTimer.elapsed() > heartbeatTimeout)) {
@@ -149,7 +150,43 @@ void Bridge::_commLostCheck()
 
 
     if (_updatePrimaryLink()) {
-        // change primary link
+        qCDebug(BridgeLog, "update link");
     }
 
+}
+
+void Bridge::_sendGCSHeartbeat()
+{
+    mavlink_message_t message{};
+    (void) mavlink_msg_heartbeat_pack_chan(
+        1,
+        2,
+        _primaryUdpLink->mavlinkChannel(),
+        &message,
+        MAV_TYPE_GENERIC,
+        MAV_AUTOPILOT_INVALID,
+        MAV_MODE_MANUAL_ARMED,
+        0,
+        MAV_STATE_ACTIVE
+        );
+
+    uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+    const uint16_t len = mavlink_msg_to_send_buffer(buffer, &message);
+    (void) _primaryUdpLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buffer), len);
+
+    (void) mavlink_msg_heartbeat_pack_chan(
+        1,
+        2,
+        _secondaryUdpLink->mavlinkChannel(),
+        &message,
+        MAV_TYPE_GENERIC,
+        MAV_AUTOPILOT_INVALID,
+        MAV_MODE_MANUAL_ARMED,
+        0,
+        MAV_STATE_ACTIVE
+        );
+
+    uint8_t buffer2[MAVLINK_MAX_PACKET_LEN];
+    const uint16_t len2 = mavlink_msg_to_send_buffer(buffer2, &message);
+    (void) _secondaryUdpLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buffer2), len);
 }

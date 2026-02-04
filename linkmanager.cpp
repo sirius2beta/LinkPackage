@@ -13,6 +13,7 @@
 #include "UDPLink.h"
 #include "SerialLink.h"
 #include "UdpIODevice.h"
+#include "bridge.h"
 
 
 #include <QtCore/qapplicationstatic.h>
@@ -51,6 +52,7 @@ void LinkManager::init()
 
     (void) connect(_portListTimer, &QTimer::timeout, this, &LinkManager::_updateAutoConnectLinks);
     _portListTimer->start(_autoconnectUpdateTimerMSecs); // timeout must be long enough to get past bootloader on second pass
+    Bridge::instance()->init();
 
 }
 
@@ -349,7 +351,7 @@ void LinkManager::_addUDPAutoConnectLink()
     udpConfig->setDynamic(true);
     udpConfig->setAutoConnect(true);
     udpConfig->setLocalPort(14560);
-    udpConfig->addHost("127.0.0.1:14550");
+    udpConfig->addHost("100.102.166.21:14550");
     SharedLinkConfigurationPtr config = addConfiguration(udpConfig);
     createConnectedLink(config);
 
@@ -360,7 +362,7 @@ void LinkManager::_addUDPAutoConnectLink()
     udpConfig2->addHost("127.0.0.1:14551");
     SharedLinkConfigurationPtr config2 = addConfiguration(udpConfig2);
     createConnectedLink(config2);
-
+    Bridge::instance()->addUdpLinks(udpConfig->link(), udpConfig2->link());
 
 
 }
@@ -745,6 +747,7 @@ void LinkManager::_addSerialAutoConnectLink()
 
                     SharedLinkConfigurationPtr sharedConfig(pSerialConfig);
                     createConnectedLink(sharedConfig);
+                    Bridge::instance()->addPixhawkSerialLink(pSerialConfig->link());
                 }
             }
         }

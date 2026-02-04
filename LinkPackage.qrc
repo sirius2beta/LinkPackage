@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/json">
+        <file alias="USBBoardInfo.json">USBBoardInfo.json</file>
+    </qresource>
+</RCC>
