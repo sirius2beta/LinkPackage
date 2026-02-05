@@ -7,8 +7,8 @@
  *
  ****************************************************************************/
 
-#include "LinkManager.h"
-#include "MAVLinkProtocol.h"
+#include "linkmanager.h"
+#include "mavlinkprotocol.h"
 
 #include "UDPLink.h"
 #include "SerialLink.h"

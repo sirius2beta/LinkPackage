@@ -13,10 +13,10 @@
 #include <QtCore/QLoggingCategory>
 #include <QtCore/QStringList>
 #include <QSerialPortInfo>
-
+#include <QTimer>
 #include <limits>
 
-#include "LinkConfiguration.h"
+#include "linkconfiguration.h"
 #include "linkinterface.h"
 #include "UDPLink.h"
 #include "QGCSerialPortInfo.h"

@@ -2,11 +2,12 @@
 #include "linkmanager.h"
 #include "bridge.h"
 
-#include<QtCore/QApplicationStatic>
+#include <QtCore/qapplicationstatic.h>
 #include<QSettings>
 #include<QLoggingCategory>
-Q_APPLICATION_STATIC(MAVLinkProtocol, _mavlinkProtocolInstance)
-Q_LOGGING_CATEGORY(MAVLinkProtocolLog, "qgc.comms.mavlinkprotocol")
+
+Q_APPLICATION_STATIC(MAVLinkProtocol, _mavlinkProtocolInstance);
+Q_LOGGING_CATEGORY(MAVLinkProtocolLog, "qgc.comms.mavlinkprotocol");
 
 
 MAVLinkProtocol::MAVLinkProtocol(QObject *parent)

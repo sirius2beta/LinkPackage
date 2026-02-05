@@ -8,6 +8,7 @@
 
 #include <QObject>
 #include <QtCore/QElapsedTimer>
+#include <QTimer>
 
 
 class Bridge : public QObject

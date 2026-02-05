@@ -1,6 +1,7 @@
 #include "linkinterface.h"
 #include "linkmanager.h"
 #include <QDebug>
+#include <QTimer>
 LinkInterface::LinkInterface(SharedLinkConfigurationPtr &config, QObject *parent)
     : QObject{parent}
     , _config(config)
@@ -63,5 +64,7 @@ void LinkInterface::_freeMavlinkChannel()
 void LinkInterface::writeBytesThreadSafe(const char *bytes, int length)
 {
     const QByteArray data(bytes, length);
-    (void) QMetaObject::invokeMethod(this, "_writeBytes", Qt::AutoConnection, data);
+    QMetaObject::invokeMethod(this, [this, data] { 
+    _writeBytes(data); 
+}, Qt::AutoConnection);
 }
