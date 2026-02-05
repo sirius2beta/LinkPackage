@@ -11,7 +11,7 @@
 #pragma once
 
 #include <QtCore/QLoggingCategory>
-#include <QtCore/QtSystemDetection>
+#include <QtGlobal>
 #ifdef Q_OS_ANDROID
     #include "qserialportinfo.h"
 #else

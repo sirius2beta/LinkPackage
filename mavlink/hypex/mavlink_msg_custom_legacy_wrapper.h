@@ -10,18 +10,18 @@ typedef struct __mavlink_custom_legacy_wrapper_t {
  uint8_t length; /*<  data length*/
  uint8_t topic; /*<  topic ID*/
  uint8_t id; /*<  old protocol ID*/
- uint8_t payload[251]; /*<  data*/
+ uint8_t payload[250]; /*<  data*/
 } mavlink_custom_legacy_wrapper_t;
 
-#define MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN 256
-#define MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_MIN_LEN 256
-#define MAVLINK_MSG_ID_51001_LEN 256
-#define MAVLINK_MSG_ID_51001_MIN_LEN 256
+#define MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN 255
+#define MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_MIN_LEN 255
+#define MAVLINK_MSG_ID_51001_LEN 255
+#define MAVLINK_MSG_ID_51001_MIN_LEN 255
 
-#define MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_CRC 139
-#define MAVLINK_MSG_ID_51001_CRC 139
+#define MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_CRC 19
+#define MAVLINK_MSG_ID_51001_CRC 19
 
-#define MAVLINK_MSG_CUSTOM_LEGACY_WRAPPER_FIELD_PAYLOAD_LEN 251
+#define MAVLINK_MSG_CUSTOM_LEGACY_WRAPPER_FIELD_PAYLOAD_LEN 250
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CUSTOM_LEGACY_WRAPPER { \
@@ -33,7 +33,7 @@ typedef struct __mavlink_custom_legacy_wrapper_t {
          { "length", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_custom_legacy_wrapper_t, length) }, \
          { "topic", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_custom_legacy_wrapper_t, topic) }, \
          { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_custom_legacy_wrapper_t, id) }, \
-         { "payload", NULL, MAVLINK_TYPE_UINT8_T, 251, 5, offsetof(mavlink_custom_legacy_wrapper_t, payload) }, \
+         { "payload", NULL, MAVLINK_TYPE_UINT8_T, 250, 5, offsetof(mavlink_custom_legacy_wrapper_t, payload) }, \
          } \
 }
 #else
@@ -45,7 +45,7 @@ typedef struct __mavlink_custom_legacy_wrapper_t {
          { "length", NULL, MAVLINK_TYPE_UINT8_T, 0, 2, offsetof(mavlink_custom_legacy_wrapper_t, length) }, \
          { "topic", NULL, MAVLINK_TYPE_UINT8_T, 0, 3, offsetof(mavlink_custom_legacy_wrapper_t, topic) }, \
          { "id", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_custom_legacy_wrapper_t, id) }, \
-         { "payload", NULL, MAVLINK_TYPE_UINT8_T, 251, 5, offsetof(mavlink_custom_legacy_wrapper_t, payload) }, \
+         { "payload", NULL, MAVLINK_TYPE_UINT8_T, 250, 5, offsetof(mavlink_custom_legacy_wrapper_t, payload) }, \
          } \
 }
 #endif
@@ -74,7 +74,7 @@ static inline uint16_t mavlink_msg_custom_legacy_wrapper_pack(uint8_t system_id,
     _mav_put_uint8_t(buf, 2, length);
     _mav_put_uint8_t(buf, 3, topic);
     _mav_put_uint8_t(buf, 4, id);
-    _mav_put_uint8_t_array(buf, 5, payload, 251);
+    _mav_put_uint8_t_array(buf, 5, payload, 250);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN);
 #else
     mavlink_custom_legacy_wrapper_t packet;
@@ -83,7 +83,7 @@ static inline uint16_t mavlink_msg_custom_legacy_wrapper_pack(uint8_t system_id,
     packet.length = length;
     packet.topic = topic;
     packet.id = id;
-    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*251);
+    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*250);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN);
 #endif
 
@@ -116,7 +116,7 @@ static inline uint16_t mavlink_msg_custom_legacy_wrapper_pack_status(uint8_t sys
     _mav_put_uint8_t(buf, 2, length);
     _mav_put_uint8_t(buf, 3, topic);
     _mav_put_uint8_t(buf, 4, id);
-    _mav_put_uint8_t_array(buf, 5, payload, 251);
+    _mav_put_uint8_t_array(buf, 5, payload, 250);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN);
 #else
     mavlink_custom_legacy_wrapper_t packet;
@@ -125,7 +125,7 @@ static inline uint16_t mavlink_msg_custom_legacy_wrapper_pack_status(uint8_t sys
     packet.length = length;
     packet.topic = topic;
     packet.id = id;
-    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*251);
+    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*250);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN);
 #endif
 
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_custom_legacy_wrapper_pack_chan(uint8_t syste
     _mav_put_uint8_t(buf, 2, length);
     _mav_put_uint8_t(buf, 3, topic);
     _mav_put_uint8_t(buf, 4, id);
-    _mav_put_uint8_t_array(buf, 5, payload, 251);
+    _mav_put_uint8_t_array(buf, 5, payload, 250);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN);
 #else
     mavlink_custom_legacy_wrapper_t packet;
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_custom_legacy_wrapper_pack_chan(uint8_t syste
     packet.length = length;
     packet.topic = topic;
     packet.id = id;
-    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*251);
+    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*250);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN);
 #endif
 
@@ -242,7 +242,7 @@ static inline void mavlink_msg_custom_legacy_wrapper_send(mavlink_channel_t chan
     _mav_put_uint8_t(buf, 2, length);
     _mav_put_uint8_t(buf, 3, topic);
     _mav_put_uint8_t(buf, 4, id);
-    _mav_put_uint8_t_array(buf, 5, payload, 251);
+    _mav_put_uint8_t_array(buf, 5, payload, 250);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER, buf, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_MIN_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_CRC);
 #else
     mavlink_custom_legacy_wrapper_t packet;
@@ -251,7 +251,7 @@ static inline void mavlink_msg_custom_legacy_wrapper_send(mavlink_channel_t chan
     packet.length = length;
     packet.topic = topic;
     packet.id = id;
-    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*251);
+    mav_array_memcpy(packet.payload, payload, sizeof(uint8_t)*250);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER, (const char *)&packet, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_MIN_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_CRC);
 #endif
 }
@@ -287,7 +287,7 @@ static inline void mavlink_msg_custom_legacy_wrapper_send_buf(mavlink_message_t 
     _mav_put_uint8_t(buf, 2, length);
     _mav_put_uint8_t(buf, 3, topic);
     _mav_put_uint8_t(buf, 4, id);
-    _mav_put_uint8_t_array(buf, 5, payload, 251);
+    _mav_put_uint8_t_array(buf, 5, payload, 250);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER, buf, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_MIN_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_CRC);
 #else
     mavlink_custom_legacy_wrapper_t *packet = (mavlink_custom_legacy_wrapper_t *)msgbuf;
@@ -296,7 +296,7 @@ static inline void mavlink_msg_custom_legacy_wrapper_send_buf(mavlink_message_t 
     packet->length = length;
     packet->topic = topic;
     packet->id = id;
-    mav_array_memcpy(packet->payload, payload, sizeof(uint8_t)*251);
+    mav_array_memcpy(packet->payload, payload, sizeof(uint8_t)*250);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER, (const char *)packet, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_MIN_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_LEN, MAVLINK_MSG_ID_CUSTOM_LEGACY_WRAPPER_CRC);
 #endif
 }
@@ -364,7 +364,7 @@ static inline uint8_t mavlink_msg_custom_legacy_wrapper_get_id(const mavlink_mes
  */
 static inline uint16_t mavlink_msg_custom_legacy_wrapper_get_payload(const mavlink_message_t* msg, uint8_t *payload)
 {
-    return _MAV_RETURN_uint8_t_array(msg, payload, 251,  5);
+    return _MAV_RETURN_uint8_t_array(msg, payload, 250,  5);
 }
 
 /**
