@@ -18,6 +18,7 @@ add_executable(${CMAKE_PROJECT_NAME}
   main.cpp
   LinkPackage.qrc
   bridge.h bridge.cpp
+  linkconfiguration.h linkconfiguration.cpp
 )
 
 
