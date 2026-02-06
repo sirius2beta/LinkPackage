@@ -3,6 +3,7 @@
 
 #include "linkconfiguration.h"
 #include <QObject>
+#include <memory>
 class LinkManager;
 
 class LinkInterface : public QObject

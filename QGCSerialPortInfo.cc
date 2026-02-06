@@ -15,6 +15,7 @@
 #include <QtCore/QJsonArray>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+#include <QRegularExpression>
 
 Q_LOGGING_CATEGORY(QGCSerialPortInfoLog, "qgc.comms.qgcserialportinfo")
 

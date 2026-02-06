@@ -250,14 +250,23 @@ void UDPWorker::setupSocket()
     _socket = new QUdpSocket(this);
 
     const QList<QHostAddress> localAddresses = QNetworkInterface::allAddresses();
-    _localAddresses = QSet(localAddresses.constBegin(), localAddresses.constEnd());
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        _localAddresses = QSet(localAddresses.constBegin(), localAddresses.constEnd());
+    #else
+        _localAddresses = localAddresses.toSet();
+    #endif
 
     _socket->setProxy(QNetworkProxy::NoProxy);
 
     (void) connect(_socket, &QUdpSocket::connected, this, &UDPWorker::_onSocketConnected);
     (void) connect(_socket, &QUdpSocket::disconnected, this, &UDPWorker::_onSocketDisconnected);
     (void) connect(_socket, &QUdpSocket::readyRead, this, &UDPWorker::_onSocketReadyRead);
-    (void) connect(_socket, &QUdpSocket::errorOccurred, this, &UDPWorker::_onSocketErrorOccurred);
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        (void) connect(_socket, &QUdpSocket::errorOccurred, this, &UDPWorker::_onSocketErrorOccurred);
+    #else
+        // Qt 5 语法：由于 error 是重载的，需要指定函数指针类型
+        (void) connect(_socket, static_cast<void(QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error), this, &UDPWorker::_onSocketErrorOccurred);
+    #endif
     (void) connect(_socket, &QUdpSocket::stateChanged, this, [this](QUdpSocket::SocketState state) {
         qCDebug(UDPLinkLog) << "UDP State Changed:" << state;
         switch (state) {

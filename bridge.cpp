@@ -1,13 +1,20 @@
 #include "bridge.h"
 #include "linkmanager.h"
-#include <QtCore/qapplicationstatic.h>
+#include <QtGlobal>
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QtCore/qapplicationstatic.h>
+    Q_APPLICATION_STATIC(Bridge, _bridgeInstance)
+#else
+    #include <QtGlobal>
+    Q_GLOBAL_STATIC(Bridge, _bridgeInstance)
+#endif
 #include <QtCore/QTimer>
 #include <QtQml/qqml.h>
 #include <QLoggingCategory>
 
 Q_LOGGING_CATEGORY(BridgeLog, "hypex.comms.bridge")
 
-Q_APPLICATION_STATIC(Bridge, _bridgeInstance);
 
 Bridge::Bridge(QObject *parent)
     : QObject{parent},

@@ -9,7 +9,7 @@
 
 #include "JsonHelper.h"
 
-#include <QtCore/qapplicationstatic.h>
+
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 #include <QtCore/QJsonArray>
@@ -34,7 +34,13 @@ namespace JsonHelper
     constexpr const char *_jsonGroundStationValue = "QGroundControl";
 }
 
-Q_APPLICATION_STATIC(QTranslator, s_jsonTranslator);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QtCore/qapplicationstatic.h>
+    Q_APPLICATION_STATIC(QTranslator, s_jsonTranslator);
+#else
+    #include <QtGlobal>
+    Q_GLOBAL_STATIC(QTranslator, s_jsonTranslator)
+#endif
 
 QTranslator *JsonHelper::translator()
 {

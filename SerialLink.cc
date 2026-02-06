@@ -155,9 +155,20 @@ QStringList SerialConfiguration::supportedBaudRates()
 
     const QList<qint32> activeSupportedBaudRates = QSerialPortInfo::standardBaudRates();
 
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     QSet<qint32> mergedBaudRateSet(kDefaultSupportedBaudRates.constBegin(), kDefaultSupportedBaudRates.constEnd());
-    (void) mergedBaudRateSet.unite(QSet<qint32>(activeSupportedBaudRates.constBegin(), activeSupportedBaudRates.constEnd()));
-
+    #else
+        // Qt 5 做法：如果是 QList，可以使用 toSet()；如果是 QSet，直接赋值
+        QSet<qint32> mergedBaudRateSet = kDefaultSupportedBaudRates; 
+        // 或者通用的：
+        // QSet<qint32> mergedBaudRateSet = QSet<qint32>::fromList(kDefaultSupportedBaudRates.toList());
+    #endif
+    
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        (void) mergedBaudRateSet.unite(QSet<qint32>(activeSupportedBaudRates.constBegin(), activeSupportedBaudRates.constEnd()));
+    #else
+        mergedBaudRateSet.unite(activeSupportedBaudRates.toSet());
+    #endif
     QList<qint32> mergedBaudRateList = mergedBaudRateSet.values();
     std::sort(mergedBaudRateList.begin(), mergedBaudRateList.end());
 
@@ -318,7 +329,11 @@ void SerialWorker::writeData(const QByteArray &data)
         totalBytesWritten += bytesWritten;
     }
 
-    const QByteArray sent = data.first(totalBytesWritten);
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        const QByteArray sent = data.first(totalBytesWritten);
+    #else
+        const QByteArray sent = data.left(totalBytesWritten);
+    #endif
     emit dataSent(sent);
 }
 

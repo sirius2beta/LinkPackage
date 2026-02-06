@@ -16,7 +16,14 @@
 #include "bridge.h"
 
 
-#include <QtCore/qapplicationstatic.h>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QtCore/qapplicationstatic.h>
+    Q_APPLICATION_STATIC(LinkManager, _linkManagerInstance);
+
+#else
+    #include <QtGlobal>
+    Q_GLOBAL_STATIC(LinkManager, _linkManagerInstance)
+#endif
 #include <QtCore/QTimer>
 #include <QtQml/qqml.h>
 #include <QLoggingCategory>
@@ -24,7 +31,6 @@
 Q_LOGGING_CATEGORY(LinkManagerLog, "qgc.comms.linkmanager")
 Q_LOGGING_CATEGORY(LinkManagerVerboseLog, "qgc.comms.linkmanager:verbose")
 
-Q_APPLICATION_STATIC(LinkManager, _linkManagerInstance);
 
 LinkManager::LinkManager(QObject *parent)
     : QObject(parent)

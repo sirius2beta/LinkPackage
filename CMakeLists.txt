@@ -39,7 +39,7 @@ target_sources(${CMAKE_PROJECT_NAME}
 
 )
 
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialPort Qt6::Network)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::Network)
 
 include(GNUInstallDirs)
 install(TARGETS ${CMAKE_PROJECT_NAME}

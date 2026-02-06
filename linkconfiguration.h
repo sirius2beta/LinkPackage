@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QtCore/QSettings>
 #include <QtCore/QString>
+#include <memory>
 
 class LinkInterface;
 
@@ -11,8 +12,9 @@ class LinkInterface;
 class LinkConfiguration : public QObject
 {
     Q_OBJECT
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     Q_MOC_INCLUDE("linkinterface.h")
-
+    #endif
     Q_PROPERTY(QString          name            READ name           WRITE setName           NOTIFY nameChanged)
     Q_PROPERTY(LinkInterface    *link           READ link                                   NOTIFY linkChanged)
     Q_PROPERTY(LinkType         linkType        READ type                                   CONSTANT)
