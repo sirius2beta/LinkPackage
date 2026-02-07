@@ -87,6 +87,7 @@ void Bridge::mavlinkMessageReceived(LinkInterface *link, const mavlink_message_t
             _updatePrimaryLink();
         }
     }
+    emit mavlinkToParse(message);
 }
 
 

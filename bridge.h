@@ -25,7 +25,7 @@ public:
 
     WeakLinkInterfacePtr primaryLink() const { return _primaryLink; }
 signals:
-
+    void mavlinkToParse(const mavlink_message_t &message);
 
 protected slots:
     void mavlinkMessageReceived(LinkInterface *link, const mavlink_message_t &message);
