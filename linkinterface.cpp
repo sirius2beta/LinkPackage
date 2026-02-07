@@ -64,7 +64,8 @@ void LinkInterface::_freeMavlinkChannel()
 void LinkInterface::writeBytesThreadSafe(const char *bytes, int length)
 {
     const QByteArray data(bytes, length);
-    QMetaObject::invokeMethod(this, [this, data] { 
-    _writeBytes(data); 
-}, Qt::AutoConnection);
+
+    (void) QMetaObject::invokeMethod(this, [this, data] {
+        _writeBytes(data);
+    }, Qt::AutoConnection);
 }
