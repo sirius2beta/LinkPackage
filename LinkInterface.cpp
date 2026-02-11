@@ -1,5 +1,5 @@
-#include "linkinterface.h"
-#include "linkmanager.h"
+#include "LinkInterface.h"
+#include "LinkManager.h"
 #include <QDebug>
 #include <QTimer>
 LinkInterface::LinkInterface(SharedLinkConfigurationPtr &config, QObject *parent)

@@ -4,7 +4,7 @@
 #include <QObject>
 
 #include "MAVLinkLib.h"
-#include "linkinterface.h"
+#include "LinkInterface.h"
 class MAVLinkProtocol : public QObject
 {
     Q_OBJECT

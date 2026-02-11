@@ -18,8 +18,8 @@
 
 
 
-#include "linkconfiguration.h"
-#include "linkinterface.h"
+#include "LinkConfiguration.h"
+#include "LinkInterface.h"
 
 class QUdpSocket;
 class QThread;

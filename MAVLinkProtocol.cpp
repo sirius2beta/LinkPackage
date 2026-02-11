@@ -1,6 +1,6 @@
-#include "mavlinkprotocol.h"
-#include "linkmanager.h"
-#include "bridge.h"
+#include "MAVLinkProtocol.h"
+#include "LinkManager.h"
+#include "Bridge.h"
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QtCore/qapplicationstatic.h>

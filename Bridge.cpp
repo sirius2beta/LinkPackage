@@ -1,5 +1,5 @@
-#include "bridge.h"
-#include "linkmanager.h"
+#include "Bridge.h"
+#include "LinkManager.h"
 #include <QtGlobal>
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)

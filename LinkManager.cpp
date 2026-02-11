@@ -7,13 +7,13 @@
  *
  ****************************************************************************/
 
-#include "linkmanager.h"
-#include "mavlinkprotocol.h"
+#include "LinkManager.h"
+#include "MAVLinkProtocol.h"
 
 #include "UDPLink.h"
 #include "SerialLink.h"
 #include "UdpIODevice.h"
-#include "bridge.h"
+#include "Bridge.h"
 
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -365,7 +365,7 @@ void LinkManager::_addUDPAutoConnectLink()
     udpConfig2->setDynamic(true);
     udpConfig2->setAutoConnect(true);
     udpConfig2->setLocalPort(14561);
-    udpConfig2->addHost("127.0.0.1:14551");
+    udpConfig2->addHost("192.168.0.252:14450");
     SharedLinkConfigurationPtr config2 = addConfiguration(udpConfig2);
     createConnectedLink(config2);
     Bridge::instance()->addUdpLinks(udpConfig->link(), udpConfig2->link());

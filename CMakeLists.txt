@@ -17,20 +17,19 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core SerialPort Network)
 add_executable(${CMAKE_PROJECT_NAME}
   main.cpp
   LinkPackage.qrc
-  bridge.h bridge.cpp
-  linkconfiguration.h linkconfiguration.cpp
+  Bridge.h Bridge.cpp
 )
 
 
 target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE
-    linkconfiguration.h linkconfiguration.cpp
-    linkinterface.h linkinterface.cpp
-    mavlinkprotocol.h
-    mavlinkprotocol.cpp
+    LinkConfiguration.h linkConfiguration.cpp
+    LinkInterface.h LinkInterface.cpp
+    MAVLinkProtocol.h
+    MAVLinkProtocol.cpp
     MAVLinkLib.h
 
-    linkmanager.h linkmanager.cpp
+    LinkManager.h LinkManager.cpp
     SerialLink.h SerialLink.cc
     UDPLink.h UDPLink.cc
     UdpIODevice.cc UdpIODevice.h
