@@ -23,7 +23,7 @@ add_executable(${CMAKE_PROJECT_NAME}
 
 target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE
-    LinkConfiguration.h linkConfiguration.cpp
+    LinkConfiguration.h LinkConfiguration.cpp
     LinkInterface.h LinkInterface.cpp
     MAVLinkProtocol.h
     MAVLinkProtocol.cpp

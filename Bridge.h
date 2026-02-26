@@ -1,10 +1,9 @@
 #ifndef BRIDGE_H
 #define BRIDGE_H
 
-#include "linkinterface.h"
-#include "linkinterface.h"
+#include "LinkInterface.h"
 #include "MAVLinkLib.h"
-#include "mavlinkprotocol.h"
+#include "MAVLinkProtocol.h"
 
 #include <QObject>
 #include <QtCore/QElapsedTimer>
