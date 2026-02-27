@@ -1,0 +1,8 @@
+/home/sirius2beta/LinkPackage/build/CMakeFiles/LinkPackage.dir
+/home/sirius2beta/LinkPackage/build/CMakeFiles/edit_cache.dir
+/home/sirius2beta/LinkPackage/build/CMakeFiles/rebuild_cache.dir
+/home/sirius2beta/LinkPackage/build/CMakeFiles/list_install_components.dir
+/home/sirius2beta/LinkPackage/build/CMakeFiles/install.dir
+/home/sirius2beta/LinkPackage/build/CMakeFiles/install/local.dir
+/home/sirius2beta/LinkPackage/build/CMakeFiles/install/strip.dir
+/home/sirius2beta/LinkPackage/build/CMakeFiles/LinkPackage_autogen.dir

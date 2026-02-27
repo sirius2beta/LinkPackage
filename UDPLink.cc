@@ -140,7 +140,12 @@ void UDPConfiguration::addHost(const QString &host, quint16 port)
     }
 
     const QHostAddress address(ipAdd);
-    if (!containsTarget(_targetHosts, address, port)) {
+    // only add if it's not already in the list
+    if(_targetHosts.size() >= 1){
+        _targetHosts[0].get()->address = address;
+        _targetHosts[0].get()->port = port;
+        return;
+    }else{
         _targetHosts.append(std::make_shared<UDPClient>(address, port));
     }
 }
@@ -196,7 +201,6 @@ void UDPConfiguration::removeHost(const QString &host, quint16 port)
         }
     }
 }
-
 
 
 QString UDPConfiguration::_getIpAddress(const QString &address)
@@ -422,6 +426,11 @@ void UDPWorker::_onSocketReadyRead()
 
         QMutexLocker locker(&_sessionTargetsMutex);
         if (!containsTarget(_sessionTargets, senderAddress, datagramIn.senderPort())) {
+            if(_sessionTargets.size() >= 1){
+                _sessionTargets[0].get()->address = senderAddress;
+                _sessionTargets[0].get()->port = datagramIn.senderPort();
+                return;
+            }
             qCDebug(UDPLinkLog) << "UDP Adding target:" << senderAddress << datagramIn.senderPort();
             _sessionTargets.append(std::make_shared<UDPClient>(senderAddress, datagramIn.senderPort()));
         }

@@ -60,6 +60,8 @@ private:
     LinkInfo_t _primaryUdpLinkInfo;
     LinkInfo_t _secondaryUdpLinkInfo;
     LinkInfo_t _pixhawkSerialLinkInfo;
+    uint8_t _systemID = 1;
+    uint8_t _componentID = 5;
 };
 
 #endif // BRIDGE_H

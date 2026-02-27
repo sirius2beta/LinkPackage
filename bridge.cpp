@@ -165,36 +165,52 @@ void Bridge::_commLostCheck()
 
 void Bridge::_sendGCSHeartbeat()
 {
-    mavlink_message_t message{};
-    (void) mavlink_msg_heartbeat_pack_chan(
-        1,
-        2,
-        _primaryUdpLink->mavlinkChannel(),
-        &message,
-        MAV_TYPE_GENERIC,
-        MAV_AUTOPILOT_INVALID,
-        MAV_MODE_MANUAL_ARMED,
-        0,
-        MAV_STATE_ACTIVE
+    uint8_t target_sys = 1;
+    uint8_t target_comp = 1;
+    uint8_t topic = 0; // heartbeat topic
+    //empty payload for heartbeat
+    QByteArray paddedMsg(251, 0);
+    uint8_t payload[251];
+    memcpy(payload, paddedMsg.data(), paddedMsg.size());
+    uint8_t length = 0;
+
+
+    if(!_primaryUdpLinkInfo.commLost){
+        qDebug(BridgeLog, "send heartbeat from primary link");
+        mavlink_message_t message{};
+        (void) mavlink_msg_custom_legacy_wrapper_pack_chan(
+            _systemID,
+            _componentID,
+            _primaryUdpLink->mavlinkChannel(),
+            &message,
+            target_sys,
+            target_comp,
+            length,
+            topic,
+            payload
         );
 
-    uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
-    const uint16_t len = mavlink_msg_to_send_buffer(buffer, &message);
-    (void) _primaryUdpLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buffer), len);
-
-    (void) mavlink_msg_heartbeat_pack_chan(
-        1,
-        2,
-        _secondaryUdpLink->mavlinkChannel(),
-        &message,
-        MAV_TYPE_GENERIC,
-        MAV_AUTOPILOT_INVALID,
-        MAV_MODE_MANUAL_ARMED,
-        0,
-        MAV_STATE_ACTIVE
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        const uint16_t len = mavlink_msg_to_send_buffer(buffer, &message);
+        (void) _primaryUdpLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buffer), len);
+    }
+    if(!_secondaryUdpLinkInfo.commLost){
+        qDebug(BridgeLog, "send heartbeat from secondary link");
+        mavlink_message_t message{};
+        (void) mavlink_msg_custom_legacy_wrapper_pack_chan(
+            _systemID,
+            _componentID,
+            _secondaryUdpLink->mavlinkChannel(),
+            &message,
+            target_sys,
+            target_comp,
+            length,
+            topic,
+            payload
         );
 
-    uint8_t buffer2[MAVLINK_MAX_PACKET_LEN];
-    const uint16_t len2 = mavlink_msg_to_send_buffer(buffer2, &message);
-    (void) _secondaryUdpLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buffer2), len);
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        const uint16_t len = mavlink_msg_to_send_buffer(buffer, &message);
+        (void) _secondaryUdpLink->writeBytesThreadSafe(reinterpret_cast<const char*>(buffer), len);
+    }
 }

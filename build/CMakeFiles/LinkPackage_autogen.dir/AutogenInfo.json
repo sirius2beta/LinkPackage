@@ -1,0 +1,193 @@
+{
+	"BUILD_DIR" : "/home/sirius2beta/LinkPackage/build/LinkPackage_autogen",
+	"CMAKE_BINARY_DIR" : "/home/sirius2beta/LinkPackage/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/sirius2beta/LinkPackage/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/sirius2beta/LinkPackage",
+	"CMAKE_EXECUTABLE" : "/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/bin/cmake",
+	"CMAKE_LIST_FILES" : 
+	[
+		"/home/sirius2beta/LinkPackage/CMakeLists.txt",
+		"/home/sirius2beta/LinkPackage/build/CMakeFiles/3.30.3/CMakeSystem.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake",
+		"/home/sirius2beta/LinkPackage/build/CMakeFiles/3.30.3/CMakeCXXCompiler.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeGenericSystem.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Platform/Linux.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Platform/UnixPaths.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeCXXInformation.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Compiler/GNU.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5/Qt5ConfigVersion.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5/Qt5Config.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5/Qt5ConfigVersion.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5/Qt5Config.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5/Qt5ModuleLocation.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeParseArguments.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5SerialPort/Qt5SerialPortConfigVersion.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5SerialPort/Qt5SerialPortConfig.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Network/Qt5NetworkConfig.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Network/Qt5Network_QConnmanEnginePlugin.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake",
+		"/usr/lib/aarch64-linux-gnu/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
+		"/home/sirius2beta/LinkPackage/LinkPackage.qrc"
+	],
+	"CMAKE_SOURCE_DIR" : "/home/sirius2beta/LinkPackage",
+	"CROSS_CONFIG" : false,
+	"DEP_FILE" : "",
+	"DEP_FILE_RULE_NAME" : "",
+	"HEADERS" : 
+	[
+		[
+			"/home/sirius2beta/LinkPackage/JsonHelper.h",
+			"MU",
+			"EWIEGA46WW/moc_JsonHelper.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/MAVLinkLib.h",
+			"MU",
+			"EWIEGA46WW/moc_MAVLinkLib.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/QGCSerialPortInfo.h",
+			"MU",
+			"EWIEGA46WW/moc_QGCSerialPortInfo.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/SerialLink.h",
+			"MU",
+			"EWIEGA46WW/moc_SerialLink.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/UDPLink.h",
+			"MU",
+			"EWIEGA46WW/moc_UDPLink.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/UdpIODevice.h",
+			"MU",
+			"EWIEGA46WW/moc_UdpIODevice.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/bridge.h",
+			"MU",
+			"EWIEGA46WW/moc_bridge.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/linkconfiguration.h",
+			"MU",
+			"EWIEGA46WW/moc_linkconfiguration.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/linkinterface.h",
+			"MU",
+			"EWIEGA46WW/moc_linkinterface.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/linkmanager.h",
+			"MU",
+			"EWIEGA46WW/moc_linkmanager.cpp",
+			null
+		],
+		[
+			"/home/sirius2beta/LinkPackage/mavlinkprotocol.h",
+			"MU",
+			"EWIEGA46WW/moc_mavlinkprotocol.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/home/sirius2beta/LinkPackage/build/LinkPackage_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/sirius2beta/LinkPackage/build/LinkPackage_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_NETWORK_LIB", "QT_NO_DEBUG", "QT_SERIALPORT_LIB" ],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/home/sirius2beta/LinkPackage",
+		"/home/sirius2beta/LinkPackage/mavlink",
+		"/home/sirius2beta/LinkPackage/mavlink/hypex",
+		"/usr/include/aarch64-linux-gnu/qt5",
+		"/usr/include/aarch64-linux-gnu/qt5/QtCore",
+		"/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++",
+		"/usr/include/aarch64-linux-gnu/qt5/QtSerialPort",
+		"/usr/include/aarch64-linux-gnu/qt5/QtNetwork",
+		"/usr/include/c++/9",
+		"/usr/include/aarch64-linux-gnu/c++/9",
+		"/usr/include/c++/9/backward",
+		"/usr/lib/gcc/aarch64-linux-gnu/9/include",
+		"/usr/local/include",
+		"/usr/include/aarch64-linux-gnu",
+		"/usr/include"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/c++",
+		"-std=gnu++17",
+		"-dM",
+		"-E",
+		"-c",
+		"/home/sirius2beta/.local/lib/python3.8/site-packages/cmake/data/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/home/sirius2beta/LinkPackage/build/LinkPackage_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 1,
+	"PARSE_CACHE_FILE" : "/home/sirius2beta/LinkPackage/build/CMakeFiles/LinkPackage_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
+	"QT_UIC_EXECUTABLE" : "",
+	"QT_VERSION_MAJOR" : 5,
+	"QT_VERSION_MINOR" : 12,
+	"SETTINGS_FILE" : "/home/sirius2beta/LinkPackage/build/CMakeFiles/LinkPackage_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[ "/home/sirius2beta/LinkPackage/JsonHelper.cc", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/QGCSerialPortInfo.cc", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/SerialLink.cc", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/UDPLink.cc", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/UdpIODevice.cc", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/bridge.cpp", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/linkconfiguration.cpp", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/linkinterface.cpp", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/linkmanager.cpp", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/main.cpp", "MU", null ],
+		[ "/home/sirius2beta/LinkPackage/mavlinkprotocol.cpp", "MU", null ]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}

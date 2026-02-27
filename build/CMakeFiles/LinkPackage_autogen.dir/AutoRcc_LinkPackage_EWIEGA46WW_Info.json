@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "/home/sirius2beta/LinkPackage/build/LinkPackage_autogen",
+	"CMAKE_BINARY_DIR" : "/home/sirius2beta/LinkPackage/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/sirius2beta/LinkPackage/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/sirius2beta/LinkPackage",
+	"CMAKE_SOURCE_DIR" : "/home/sirius2beta/LinkPackage",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/sirius2beta/LinkPackage/build/LinkPackage_autogen/include",
+	"INPUTS" : [ "/home/sirius2beta/LinkPackage/USBBoardInfo.json" ],
+	"LOCK_FILE" : "/home/sirius2beta/LinkPackage/build/CMakeFiles/LinkPackage_autogen.dir/AutoRcc_LinkPackage_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "LinkPackage" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_LinkPackage.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt5/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/sirius2beta/LinkPackage/build/CMakeFiles/LinkPackage_autogen.dir/AutoRcc_LinkPackage_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/sirius2beta/LinkPackage/LinkPackage.qrc",
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}

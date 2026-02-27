@@ -357,7 +357,7 @@ void LinkManager::_addUDPAutoConnectLink()
     udpConfig->setDynamic(true);
     udpConfig->setAutoConnect(true);
     udpConfig->setLocalPort(14560);
-    udpConfig->addHost("100.102.166.21:14550");
+
     SharedLinkConfigurationPtr config = addConfiguration(udpConfig);
     createConnectedLink(config);
 
@@ -365,7 +365,6 @@ void LinkManager::_addUDPAutoConnectLink()
     udpConfig2->setDynamic(true);
     udpConfig2->setAutoConnect(true);
     udpConfig2->setLocalPort(14561);
-    udpConfig2->addHost("127.0.0.1:14551");
     SharedLinkConfigurationPtr config2 = addConfiguration(udpConfig2);
     createConnectedLink(config2);
     Bridge::instance()->addUdpLinks(udpConfig->link(), udpConfig2->link());
@@ -573,7 +572,7 @@ uint8_t LinkManager::allocateMavlinkChannel()
 
         mavlink_reset_channel_status(mavlinkChannel);
         mavlink_status_t* const mavlinkStatus = mavlink_get_channel_status(mavlinkChannel);
-        mavlinkStatus->flags |= MAVLINK_STATUS_FLAG_OUT_MAVLINK1;
+        mavlinkStatus->flags |= 0;
         _mavlinkChannelsUsedBitMask |= (1 << mavlinkChannel);
         qCDebug(LinkManagerLog) << "allocateMavlinkChannel" << mavlinkChannel;
         return mavlinkChannel;
