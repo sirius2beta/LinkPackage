@@ -1,5 +1,5 @@
 #include <QCoreApplication>
-#include "linkmanager.h"
+#include "LinkManager.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);

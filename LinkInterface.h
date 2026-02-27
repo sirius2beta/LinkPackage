@@ -1,7 +1,7 @@
 #ifndef LINKINTERFACE_H
 #define LINKINTERFACE_H
 
-#include "linkconfiguration.h"
+#include "LinkConfiguration.h"
 #include <QObject>
 #include <memory>
 class LinkManager;

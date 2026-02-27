@@ -16,8 +16,8 @@
 #include <QTimer>
 #include <limits>
 
-#include "linkconfiguration.h"
-#include "linkinterface.h"
+#include "LinkConfiguration.h"
+#include "LinkInterface.h"
 #include "UDPLink.h"
 #include "QGCSerialPortInfo.h"
 
